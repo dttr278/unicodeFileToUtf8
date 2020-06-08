@@ -43,11 +43,13 @@ public class BaseController {
             // making directories for our required path.
             byte[] bytes = multiFile.getBytes();
             content = new String(bytes);
-
+            content = content.replaceAll("\\\\[ \\t\\n\\r]+", "");
+            System.out.println(content);
             String utf8 = StringEscapeUtils.unescapeJava(content);
 
             // File file = new File(context.getRealPath("/file/demo.txt"));
             byte[] data = utf8.getBytes("UTF-8");
+            // byte[] data=content.getBytes("UTF-8");
             // Set mimeType trả về
             responseHeader.setContentType(MediaType.APPLICATION_OCTET_STREAM);
             // Thiết lập thông tin trả về
